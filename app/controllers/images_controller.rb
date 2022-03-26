@@ -9,11 +9,22 @@ class ImagesController < ApplicationController
   end
 
   # GET /images/new
-  def new; end
+  def new
+    @image = Image.new
+  end
 
   # POST /images
-  def create; end
+  def create
+    @image = Image.new(image_params)
+    return redirect_to images_path, flash: { notice: '作成が成功しました。' } if @image.save
 
-  # GET /image/:id
-  def show; end
+    flash.now[:alert] = @image.errors.full_messages
+    render :new
+  end
+
+  private
+
+  def image_params
+    params.require(:image).permit(:title, :avatar)
+  end
 end

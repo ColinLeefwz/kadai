@@ -40,7 +40,7 @@ class Users::SessionsController < ApplicationController
     return unless error_mgs.present?
 
     flash[:alert] = error_mgs
-    return redirect_to :login
+    return render :new
   end
 
   def auth_user
@@ -49,7 +49,7 @@ class Users::SessionsController < ApplicationController
     error_mgs << I18n.t('errors.messages.confirmation', attributes: ['ユーザーID', 'パスワード'].join('と')) unless @user.present? && @user.authenticate(session_params[:password])
     return unless error_mgs.present?
 
-    flash[:alert] = error_mgs
-    return redirect_to :login
+    flash.now[:alert] = error_mgs
+    return render :new
   end
 end

@@ -2,12 +2,17 @@
 
 h1 写真アップロード
 
-= form_for(:image, url: images_path) do |f|
+- flash.each do |type, messages|
+  - if type == 'alert'
+    ul.c-flash__alert
+      - messages.each do |msg|
+        li = msg
+= form_for(@image, url: images_path, data: { turbo: false }) do |f|
   div
-    = f.label :title, 'タイトル'
+    = f.label :title
     = f.text_field :title
   div
-    = f.label :avatar, '画像ファイル'
+    = f.label :avatar
     = f.file_field :avatar
   = f.submit 'アップロード'
 = link_to 'キャンセル', images_path

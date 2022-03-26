@@ -4,9 +4,9 @@ h1 写真一覧
 
 = link_to '写真アップロード画面', new_image_path
 
-ul.c-images__list
+.c-images__list
   - @images.each do |image|
-    li
+    .c-images__list__item
       h2 = image.title
       = image_tag image.avatar, alt: image.title
 

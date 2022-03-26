@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   post 'login', to: 'users/sessions#create'
   delete 'logout', to: 'users/sessions#destroy'
 
-  resources :images, only: %i[index new create show]
+  resources :images, only: %i[index new create]
 end
