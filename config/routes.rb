@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :images, only: %i[index new create]
 
   get 'oauth/callback', to: 'oauth#callback'
+  get 'tweet', to: 'oauth#tweet'
 end

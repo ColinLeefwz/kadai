@@ -12,4 +12,5 @@ div
     .c-images__list__item
       h2 = image.title
       = image_tag image.avatar, alt: image.title
-
+      .c-btn--tweet
+        = button_to 'ツイートする', tweet_path, method: :get, params: { title: image.title, url: rails_blob_url(image.avatar) }

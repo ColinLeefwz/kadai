@@ -25,7 +25,10 @@ class AccessTokenGetter < BaseService
   #
   # @return [String] auth url
   def call
-    succeed_result({ access_token: get_access_token })
+    access_token = get_access_token
+    return failed_result('access token is blank') unless access_token.present?
+
+    succeed_result({ access_token: access_token })
   rescue StandardError => e
     failed_result(e.message)
   end
@@ -53,6 +56,7 @@ class AccessTokenGetter < BaseService
   #
   # @return [String] access token gotten from auth server
   def get_access_token
-    JSON.parse(get_access_token).dig('access_token') if post_res.is_a?(Net::HTTPSuccess)
+    body = post_res.body
+    JSON.parse(body).dig('access_token') if body.present?
   end
 end

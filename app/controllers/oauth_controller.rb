@@ -11,10 +11,21 @@ class OauthController < ApplicationController
     redirect_to images_path, flash: { notice: 'OAuthアクセストークンの取得に成功しました。' }
   end
 
+  def tweet
+    tweet_result = ImageTweeter.call(session[:app_access_token], tweet_params[:title], tweet_params[:url])
+    return redirect_to images_path, flash: { alert: 'ツイートに失敗しました。' } unless tweet_result.success?
+
+    redirect_to images_path, flash: { notice: 'ツイートに成功しました。' }
+  end
+
   private
 
   def callback_params
     params.permit(:code)
+  end
+
+  def tweet_params
+    params.permit(:title, :url)
   end
 
   def check_code

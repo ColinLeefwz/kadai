@@ -58,8 +58,8 @@ RSpec.describe 'Users::Sessions', type: :request do
       }
 
       it do
-        expect(response).to have_http_status(:found)
-        expect(response).to redirect_to(login_url)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include 'ログイン'
         expect(flash[:alert]).to eq([user_error_msg])
       end
     end
@@ -75,8 +75,8 @@ RSpec.describe 'Users::Sessions', type: :request do
       }
 
       it do
-        expect(response).to have_http_status(:found)
-        expect(response).to redirect_to(login_url)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include 'ログイン'
         expect(flash[:alert]).to eq([password_error_msg])
       end
     end
@@ -92,8 +92,8 @@ RSpec.describe 'Users::Sessions', type: :request do
       }
 
       it do
-        expect(response).to have_http_status(:found)
-        expect(response).to redirect_to(login_url)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include 'ログイン'
         expect(flash[:alert]).to eq([user_error_msg, password_error_msg])
       end
     end
@@ -109,8 +109,8 @@ RSpec.describe 'Users::Sessions', type: :request do
       }
 
       it do
-        expect(response).to have_http_status(:found)
-        expect(response).to redirect_to(login_url)
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include 'ログイン'
         expect(flash[:alert]).to eq([auth_error_msg])
       end
     end
