@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'login', to: 'users/sessions#new'
   post 'login', to: 'users/sessions#create'
   delete 'logout', to: 'users/sessions#destroy'
+
+  resources :images, only: %i[index new create show]
 end

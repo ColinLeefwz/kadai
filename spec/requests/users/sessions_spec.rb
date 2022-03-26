@@ -3,6 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Users::Sessions', type: :request do
+  let(:correct_user_id) { 'correct_user_id' }
+  let(:correct_password) { 'correct_password' }
+
   describe 'GET /login' do
     let(:url) { '/login' }
     let(:subject) { get url }
@@ -18,9 +21,7 @@ RSpec.describe 'Users::Sessions', type: :request do
   end
 
   describe 'POST /login' do
-    let(:correct_password) { 'correct_password' }
     let(:wrong_password) { 'wrong_password' }
-    let(:correct_user_id) { 'correct_user_id' }
     let(:wrong_user_id) { 'wrong_user_id' }
     let!(:user) { User.create(user_id: correct_user_id, password: correct_password)}
     let(:params) {
@@ -116,6 +117,23 @@ RSpec.describe 'Users::Sessions', type: :request do
   end
 
   describe 'DELETE /logout' do
-    pending "add some examples (or delete) #{__FILE__}"
+    let!(:user) { User.create(user_id: correct_user_id, password: correct_password)}
+    let(:url) { '/logout' }
+    let(:parmas) {
+      {
+        session: { user_id: user.id }
+      }
+    }
+    let(:subject) { delete url, params: parmas }
+
+    before(:each) do
+      subject
+    end
+
+    it 'is successful' do
+      expect(response).to have_http_status(:found)
+      expect(response).to redirect_to(login_url)
+      expect(session[:user_id]).to be_nil
+    end
   end
 end

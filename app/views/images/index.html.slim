@@ -1,0 +1,12 @@
+= button_to 'ログアウト', logout_path, method: :delete
+
+h1 写真一覧
+
+= link_to '写真アップロード画面', new_image_path
+
+ul.c-images__list
+  - @images.each do |image|
+    li
+      h2 = image.title
+      = image_tag image.avatar, alt: image.title
+
