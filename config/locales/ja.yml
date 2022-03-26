@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user_id: ユーザーID
+      password: パスワード
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "%{attribute}を入力してください"
+      confirmation: "%{attributes}の入力が一致しません"
