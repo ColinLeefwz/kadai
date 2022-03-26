@@ -2,7 +2,10 @@
 
 h1 写真一覧
 
-= link_to '写真アップロード画面', new_image_path
+div
+  = link_to_if @author_url.present?, 'MyTweetAppと連携', @author_url
+div
+  = link_to '写真アップロード画面', new_image_path
 
 .c-images__list
   - @images.each do |image|

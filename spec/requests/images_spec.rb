@@ -19,14 +19,19 @@ RSpec.describe 'Images', type: :request do
     end
 
     context 'when there is signed in user' do
+      let(:author_link) { root_url }
+      let(:create_result) { OpenStruct.new(success?: true, payload: { url: root_url }) }
+
       before(:each) do
         allow(User).to receive(:find_by).and_return(user)
+        expect(TwitterAppAuthUrlCreator).to receive(:call).and_return(create_result)
         subject
       end
 
       it do
         expect(response).to have_http_status(:ok)
         expect(response.body).to include '写真一覧'
+        expect(response.body).to include author_link
       end
     end
   end
