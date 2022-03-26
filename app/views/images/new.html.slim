@@ -1,0 +1,13 @@
+= button_to 'ログアウト', logout_path, method: :delete
+
+h1 写真アップロード
+
+= form_for(:image, url: images_path) do |f|
+  div
+    = f.label :title, 'タイトル'
+    = f.text_field :title
+  div
+    = f.label :avatar, '画像ファイル'
+    = f.file_field :avatar
+  = f.submit 'アップロード'
+= link_to 'キャンセル', images_path

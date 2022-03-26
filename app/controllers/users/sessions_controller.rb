@@ -11,11 +11,17 @@ class Users::SessionsController < ApplicationController
   # POST /login
   def create
     session[:user_id] = @user.id
-    redirect_to root_url
+
+    session[:return_to_url] ||= request.referrer
+    redirect_to session.delete(:return_to_url) || root_path
   end
 
   # DELETE /logout
-  def destroy; end
+  def destroy
+    session[:user_id] = nil
+
+    redirect_to :login
+  end
 
   private
 
