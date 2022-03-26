@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users/sessions#destroy'
 
   resources :images, only: %i[index new create]
+
+  get 'oauth/callback', to: 'oauth#callback'
 end

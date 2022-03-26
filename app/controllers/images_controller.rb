@@ -5,6 +5,8 @@ class ImagesController < ApplicationController
 
   # GET /images
   def index
+    create_result = TwitterAppAuthUrlCreator.call
+    @author_url = create_result.payload[:url] if create_result.success?
     @images = Image.all
   end
 
