@@ -2,9 +2,19 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      image: 画像
     attributes:
-      user_id: ユーザーID
-      password: パスワード
+      user:
+        user_id: ユーザーID
+        password: パスワード
+      image:
+        title: タイトル
+        avatar: 画像ファイル
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        too_long: 'は%{count}文字以内で入力してください'
+
   errors:
     format: "%{attribute}%{message}"
     messages:
