@@ -24,7 +24,7 @@ RSpec.describe 'Images', type: :request do
 
       before(:each) do
         allow(User).to receive(:find_by).and_return(user)
-        expect(TwitterAppAuthUrlCreator).to receive(:call).and_return(create_result)
+        expect(OauthServices::Authorizer).to receive(:call).and_return(create_result)
         subject
       end
 
