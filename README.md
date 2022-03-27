@@ -40,6 +40,7 @@ Things you may want to cover:
   - ruby --version (今のrubyバージョンを確認してください)
   - gem install rails
   - rails -v (今のrailsバージョンを確認してください)
+  - bundle install
   - RAILS_ENV=development bundle exec rake db:create db:migrate (DBを立ち上げます)
     - roleやuserの権限周りに問題が起こってる可能性があります。その時は`config/database.yml`あるいはpostgres側に調整すれば、うまく実行されるはずです。
   - rails s (ローカルのサーバーを立ち上げます)
